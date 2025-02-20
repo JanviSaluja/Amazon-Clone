@@ -1,13 +1,12 @@
 // Combine HTML together
-let productsHTML=``;
+let productsHTML = '';
 
 // Generate HTML
-products.forEach((product)=>{
+products.forEach((product) => {
     productsHTML += `
         <div class="product-container">
             <div class="product-image-container">
-                <img class="product-image"
-                src="${product.image}">
+                <img class="product-image" src="${product.image}">
             </div>
 
             <div class="product-name limit-text-to-2-lines">
@@ -15,10 +14,9 @@ products.forEach((product)=>{
             </div>
 
             <div class="product-rating-container">
-                <img class="product-rating-stars"
-                src="images/ratings/rating-${product.rating.stars * 10}.png">
+                <img class="product-rating-stars" src="images/ratings/rating-${product.rating.stars * 10}.png">
                 <div class="product-rating-count link-primary">
-                ${product.rating.count}
+                    ${product.rating.count}
                 </div>
             </div>
 
@@ -28,16 +26,16 @@ products.forEach((product)=>{
 
             <div class="product-quantity-container">
                 <select>
-                <option selected value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
+                    <option selected value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
                 </select>
             </div>
 
@@ -48,13 +46,19 @@ products.forEach((product)=>{
                 Added
             </div>
 
-            <button class="add-to-cart-button button-primary">
+            <button class="add-to-cart-button button-primary js-add-to-cart" data-product-name="${product.name}">
                 Add to Cart
             </button>
-            </div>
+        </div>
     `;
-    console.log(productsHTML);
 });
 
 // Put the HTML on the page using DOM
 document.querySelector(".js-products-grid").innerHTML = productsHTML;
+
+// Event listener on add to cart button to make it interactive
+document.querySelectorAll(".js-add-to-cart").forEach((button) => {
+    button.addEventListener("click", () => {
+        console.log(button.dataset.productName); // Should log the product name
+    });
+});
