@@ -46,7 +46,7 @@ products.forEach((product) => {
                 Added
             </div>
 
-            <button class="add-to-cart-button button-primary js-add-to-cart" data-product-name="${product.name}">
+            <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${product.id}">
                 Add to Cart
             </button>
         </div>
@@ -59,6 +59,28 @@ document.querySelector(".js-products-grid").innerHTML = productsHTML;
 // Event listener on add to cart button to make it interactive
 document.querySelectorAll(".js-add-to-cart").forEach((button) => {
     button.addEventListener("click", () => {
-        console.log(button.dataset.productName); // Should log the product name
+        //get the name from the data attributes and save it in a variable
+        const productId=button.dataset.productId; 
+
+        //declare a variable for matching items.
+        let matchingItem;
+        //design a forEach loop to check if the product is already present in cart
+        cart.forEach((item) =>{
+            if(productId === item.productId){
+                matchingItem=item;
+            }
+        })
+
+        //if-else block to add a product or increase the quantity of a product
+        if(matchingItem){
+            matchingItem.quantity +=1;
+        }else{
+            cart.push({
+                productId: productId,
+                quantity:1
+            });
+        }
+
+        console.log(cart);
     });
 });
