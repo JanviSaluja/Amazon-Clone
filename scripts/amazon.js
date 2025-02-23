@@ -82,12 +82,12 @@ document.querySelectorAll(".js-add-to-cart").forEach((button) => {
         }
 
         //declare a variable to save the cart quantity
-        let cartquantity =0;
+        let cartQuantity =0;
         //calculate total quantity to display on the screen
         cart.forEach((item)=>{
-            cartquantity += item.quantity;
+            cartQuantity += item.quantity;
         });
 
-        document.querySelector(".js-cart-quantity").innerHTML=cartquantity;
+        document.querySelector(".js-cart-quantity").innerHTML=cartQsuantity;
     });
 });
